@@ -1,6 +1,8 @@
 "use client"
 import { motion } from 'framer-motion';
 import { Car, MapPin, Calendar, Users, ArrowRight, Star, Shield, Clock } from 'lucide-react';
+import { AnimatedSubscribeButton } from "@/components/ui/animated-subscribe-button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 export default function RentalCarHero() {
   const fadeInUp = {
@@ -127,11 +129,10 @@ export default function RentalCarHero() {
                 <motion.div
                   key={index}
                   className="flex items-center px-4 py-2 rounded-full border-2"
-                  style={{ borderColor: '#6EACDA', color: '#6EACDA' }}
+                  style={{ borderColor: '#E2E2B6', color: '#E2E2B6' }}
                   whileHover={{ 
-                    backgroundColor: '#6EACDA', 
+                    backgroundColor: '#E2E2B6', 
                     color: '#021526',
-                    scale: 1.05 
                   }}
                   transition={{ duration: 0.3 }}
                 >
@@ -142,7 +143,7 @@ export default function RentalCarHero() {
             </motion.div>
 
             {/* CTA Buttons */}
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6">
+            {/* <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6">
               <motion.button
                 className="px-12 py-4 rounded-2xl font-bold text-xl flex items-center justify-center group"
                 style={{ backgroundColor: '#6EACDA', color: '#021526' }}
@@ -175,7 +176,11 @@ export default function RentalCarHero() {
                 <Car className="w-6 h-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
                 Rent Now
               </motion.button>
-            </motion.div>
+            </motion.div> */}
+
+
+            <InteractiveHoverButton>GET YOUR CAR NOW </InteractiveHoverButton>
+     
 
             {/* Stats */}
             <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-8">
