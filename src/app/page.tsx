@@ -2,6 +2,7 @@ import Hero from "./Hero/page";
 
 import Header from '@/components/Header';
 import Section from '@/components/Section';
+import Image from "next/image";
 export default function Home() {
 
 // const sections = [
