@@ -1,6 +1,7 @@
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { scroller } from 'react-scroll';
 import { useActiveSection } from '@/components/hooks/useActiveSection';
 
 export default function Header() {
@@ -16,6 +17,17 @@ export default function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const scrollToSection = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    scroller.scrollTo(sectionId, {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+      offset: -80, // Adjust this value based on your header height
+    });
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#021526]/95 backdrop-blur-md border-b border-[#03346E]/20">
@@ -29,33 +41,19 @@ export default function Header() {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-2">
+            <nav className="hidden md:flex space-x-8">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.replace('#', '');
                 return (
                   <a
                     key={item.href}
                     href={item.href}
-                    className={`px-4 py-2 rounded-full transition-all duration-300 relative overflow-hidden group ${
-                      isActive 
-                        ? 'bg-[#E2E2B6] text-[#021526] shadow-lg' 
-                        : 'text-[#6EACDA] hover:text-[#E2E2B6] hover:bg-[#03346E]/30'
-                    }`}
+                    onClick={(e) => scrollToSection(item.href.replace('#', ''), e)}
+                    className={`${
+                      isActive ? 'text-[#6EACDA]' : 'text-[#E2E2B6] hover:text-[#6EACDA]'
+                    } px-3 py-2 text-sm font-medium transition-colors duration-200 cursor-pointer`}
                   >
-                    {/* Active background with curve effect */}
-                    {isActive && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#E2E2B6] to-[#E2E2B6]/90 rounded-full"></div>
-                    )}
-                    
-                    {/* Hover effect */}
-                    <div className="absolute inset-0 bg-[#6EACDA]/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                    
-                    <span className="relative z-10 font-medium">{item.label}</span>
-                    
-                    {/* Curved active indicator */}
-                    {isActive && (
-                      <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-[#03346E] rounded-full"></div>
-                    )}
+                    {item.label}
                   </a>
                 );
               })}
@@ -72,9 +70,9 @@ export default function Header() {
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
-                className="text-[#6EACDA] hover:text-[#E2E2B6] transition-colors duration-300"
+                className="text-[#6EACDA] hover:text-[#E2E2B6] focus:outline-none"
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                <Menu className="h-6 w-6" />
               </button>
             </div>
           </div>
@@ -111,31 +109,15 @@ export default function Header() {
                   <a
                     key={item.href}
                     href={item.href}
-                    onClick={toggleMenu}
-                    className={`py-3 px-4 rounded-2xl transition-all duration-300 relative overflow-hidden group ${
-                      isActive 
-                        ? 'bg-[#E2E2B6] text-[#021526] shadow-lg transform scale-105' 
-                        : 'text-[#6EACDA] hover:text-[#E2E2B6] hover:bg-[#03346E]/30 hover:transform hover:scale-102'
-                    }`}
+                    onClick={(e) => {
+                      scrollToSection(item.href.replace('#', ''), e);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`${
+                      isActive ? 'text-[#6EACDA] bg-[#03346E]/30' : 'text-[#E2E2B6] hover:bg-[#03346E]/30'
+                    } px-4 py-2 text-base font-medium rounded-md transition-colors duration-200`}
                   >
-                    {/* Active background with curve effect */}
-                    {isActive && (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#E2E2B6] to-[#E2E2B6]/95 rounded-2xl"></div>
-                        <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 w-8 h-12 bg-[#E2E2B6] rounded-l-full"></div>
-                      </>
-                    )}
-                    
-                    {/* Hover effect */}
-                    <div className="absolute inset-0 bg-[#6EACDA]/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                    
-                    <span className="relative z-10 font-medium flex items-center">
-                      {/* Active dot indicator */}
-                      {isActive && (
-                        <div className="w-2 h-2 bg-[#03346E] rounded-full mr-3 animate-pulse"></div>
-                      )}
-                      {item.label}
-                    </span>
+                    {item.label}
                   </a>
                 );
               })}
