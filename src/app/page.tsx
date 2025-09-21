@@ -1,4 +1,5 @@
 
+import AboutSection from '@/components/AboutSection';
 import Header from '@/components/Header';
 import Section from '@/components/Section';
 export default function Home() {
@@ -21,25 +22,40 @@ export default function Home() {
         title="Home" 
         bgColor="bg-[#E2E2B6]" 
         textColor="text-[#021526]"
-      />
+      >
+      </Section>
       <Section 
         id="about" 
         title="About" 
         bgColor="bg-[#6EACDA]" 
         textColor="text-[#021526]"
-      />
+      >
+        <AboutSection />
+      </Section>
       <Section 
         id="services" 
         title="Services" 
         bgColor="bg-[#03346E]" 
         textColor="text-[#E2E2B6]"
-      />
+      >
+      </Section>
       <Section 
         id="contact" 
         title="Contact" 
         bgColor="bg-[#021526]" 
         textColor="text-[#6EACDA]"
-      />
+      >
+      </Section>
+       {/* <section id="contact"className={`min-h-screen flex items-center justify-center      bgColor="bg-[#021526]" 
+        textColor="text-[#6EACDA]"`}>
+        {}
+        <div className="text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 opacity-90">
+            look
+          </h1>
+          <div className="w-24 h-1 bg-current mx-auto opacity-50"></div>
+        </div>
+      </section> */}
     </div>
   </div>
   );
