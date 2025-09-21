@@ -2,6 +2,7 @@
 import AboutSection from '@/components/AboutSection';
 import Header from '@/components/Header';
 import Section from '@/components/Section';
+import HeroSection from '@/components/HeroSection';
 export default function Home() {
 
 // const sections = [
@@ -23,6 +24,7 @@ export default function Home() {
         bgColor="bg-[#E2E2B6]" 
         textColor="text-[#021526]"
       >
+        <HeroSection />
       </Section>
       <Section 
         id="about" 

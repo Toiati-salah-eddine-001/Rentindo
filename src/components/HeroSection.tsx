@@ -1,4 +1,4 @@
-import React from 'react';
+"use client"
 import { motion } from 'framer-motion';
 import { Car, MapPin, Calendar, Users, ArrowRight, Star, Shield, Clock } from 'lucide-react';
 
@@ -29,7 +29,7 @@ export default function RentalCarHero() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden" style={{ background: 'linear-gradient(135deg, #021526 0%, #03346E 100%)' }}>
+    <div className="relative min-h-screen overflow-hidden w-full" style={{ background: 'linear-gradient(135deg, #021526 0%, #03346E 100%)' }}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <motion.div
